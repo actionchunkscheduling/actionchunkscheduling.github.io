@@ -584,10 +584,16 @@ video.r2s-video-item {
 :root {
   --dynamic-accent: #38a2fe;
   --dynamic-accent-soft: #fbe7d6;
+  --static-accent: #777B7F;
 }
 
 .dynamic-inline {
   color: var(--dynamic-accent);
+  font-weight: 600;
+}
+
+.static-inline {
+  color: var(--static-accent);
   font-weight: 600;
 }
 
