@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Action Chunk Scheduling for Batched Robot Policy Serving</title>
@@ -12,6 +13,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
     onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}], throwOnError:false});"></script>
 </head>
+
 <body>
   <div class="toc">
     <h3>Content</h3>
@@ -41,10 +43,15 @@
     <!-- End Authors -->
 
     <!-- use the video ./figs/videomimic_teaser.mp4 -->
-    <video id="teaser-video" src="./vids/supplementary_video.mp4" width="100%" height="100%" controls muted playsinline autoplay></video>
+    <video id="teaser-video" src="./vids/supplementary_video.mp4" width="100%" height="100%" controls muted playsinline
+      autoplay></video>
     <!-- Caption for Figure 1 (Teaser Video) -->
     <p class="figure-caption">
-        <span style="font-variant: small-caps;">Armory</span> is an end-to-end serving system for deploying robot policies from the cloud that tracks robot states and schedules action chunks to minimize robot starvation. Naive scheduling underserves fast robots completing highly dynamic tasks, so we also propose <span style="font-variant: small-caps;">Lookahead</span> scheduling to be able to perform a trade off for fast robot service.
+      <span style="font-variant: small-caps;">Armory</span> is an end-to-end serving system for deploying robot policies
+      from the cloud that tracks robot states and schedules action chunks to minimize robot starvation. Naive scheduling
+      underserves fast robots completing highly dynamic tasks, so we also propose <span
+        style="font-variant: small-caps;">Lookahead</span> scheduling to be able to perform a trade off for fast robot
+      service.
     </p>
 
     <!-- Add Quick Links Here -->
@@ -53,15 +60,23 @@
       <a href="https://arxiv.org/abs/2505.03729" target="_blank">[arxiv]</a>
       <a href="https://github.com/hongsukchoi/VideoMimic">[code]</a> 
     </div> -->
-    
+
     <div class="tagline" id="abstract">Abstract.</div>
 
 
     <div class="section">
 
-    Deploying robot foundation models at scale is the next step towards realizing the potential of general-purpose robots. However, Vision-Language-Action (VLA) and other foundation models are computationally demanding, and on-device compute is constrained by power and space. In this paper, we introduce the problem of serving a robot policy to multiple robots from a remote GPU and formulate it as a scheduling problem. We build <b>Armory</b>, a serving system validated on fleets of both simulated and real robots. Our experiments show that naive scheduling heuristics perform well when all robots are the same, but fall short when robots consume action chunks at different rates, uncovering a mismatch between conventional batching methods and the closed-loop requirements of robot policy execution. To address this, we propose a scheduling algorithm that accounts for this heterogeneity and improves overall system throughput by up to 18% in real-world experiments. 
-    
-    </div> 
+      Deploying robot foundation models at scale is the next step towards realizing the potential of general-purpose
+      robots. However, Vision-Language-Action (VLA) and other foundation models are computationally demanding, and
+      on-device compute is constrained by power and space. In this paper, we introduce the problem of serving a robot
+      policy to multiple robots from a remote GPU and formulate it as a scheduling problem. We build <b>Armory</b>, a
+      serving system validated on fleets of both simulated and real robots. Our experiments show that naive scheduling
+      heuristics perform well when all robots are the same, but fall short when robots consume action chunks at
+      different rates, uncovering a mismatch between conventional batching methods and the closed-loop requirements of
+      robot policy execution. To address this, we propose a scheduling algorithm that accounts for this heterogeneity
+      and improves overall system throughput by up to 18% in real-world experiments.
+
+    </div>
 
     <div class="tagline" id="deploy-in-real">Real World Demo.</div>
 
@@ -85,27 +100,44 @@
           <span class="comparison-grid-sub">baseline</span>
         </div>
         <div class="robot-grid" data-grid="maxbatch">
-          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/1.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#1</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/2.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#2</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/3.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#3</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/4.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#4</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/5.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#5</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/6.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#6</span></div>
-          <div class="robot-tile dynamic"><video class="robot-video" src="./vids/maxbatch/7_dynamic.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#7 &middot; dynamic</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/8.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#8</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/9.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#9</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/10.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#10</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/1.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#1</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/2.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#2</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/3.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#3</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/4.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#4</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/5.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#5</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/6.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#6</span></div>
+          <div class="robot-tile dynamic"><video class="robot-video" src="./vids/maxbatch/7_dynamic.mp4" muted
+              playsinline loop preload="auto"></video><span class="robot-tag">#7 &middot; dynamic</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/8.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#8</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/9.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#9</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/10.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#10</span></div>
         </div>
         <div class="scrubber-row">
           <button class="play-pause-btn" data-grid="maxbatch" aria-label="Play / pause">
-            <svg class="icon-play" viewBox="0 0 16 16"><path d="M3.5 2.5 L13 8 L3.5 13.5 Z"/></svg>
-            <svg class="icon-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="0.5"/><rect x="9.5" y="2.5" width="3" height="11" rx="0.5"/></svg>
+            <svg class="icon-play" viewBox="0 0 16 16">
+              <path d="M3.5 2.5 L13 8 L3.5 13.5 Z" />
+            </svg>
+            <svg class="icon-pause" viewBox="0 0 16 16">
+              <rect x="3.5" y="2.5" width="3" height="11" rx="0.5" />
+              <rect x="9.5" y="2.5" width="3" height="11" rx="0.5" />
+            </svg>
           </button>
-          <input type="range" class="scrubber" data-grid="maxbatch" min="0" max="60" step="0.05" value="0" aria-label="Timeline">
+          <input type="range" class="scrubber" data-grid="maxbatch" min="0" max="60" step="0.05" value="0"
+            aria-label="Timeline">
           <span class="time-display" data-grid="maxbatch">0:00 / 1:00</span>
         </div>
         <p class="grid-caption">
-          EDF starves the <span class="dynamic-inline">dynamic robot</span>: it has no urgent deadline most of the time, so it is repeatedly deprioritized and stalls.
+          EDF starves the <span class="dynamic-inline">dynamic robot</span>: it has no urgent deadline most of the time,
+          so it is repeatedly deprioritized and stalls.
         </p>
       </div>
 
@@ -115,27 +147,44 @@
           <span class="comparison-grid-sub">baseline</span>
         </div>
         <div class="robot-grid" data-grid="roundrobin">
-          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/1.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#1</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/2.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#2</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/3.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#3</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/4.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#4</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/5.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#5</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/6.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#6</span></div>
-          <div class="robot-tile dynamic"><video class="robot-video" src="./vids/roundrobin/7_dynamic.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#7 &middot; dynamic</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/8.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#8</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/9.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#9</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/10.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#10</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/1.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#1</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/2.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#2</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/3.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#3</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/4.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#4</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/5.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#5</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/6.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#6</span></div>
+          <div class="robot-tile dynamic"><video class="robot-video" src="./vids/roundrobin/7_dynamic.mp4" muted
+              playsinline loop preload="auto"></video><span class="robot-tag">#7 &middot; dynamic</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/8.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#8</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/9.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#9</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/10.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#10</span></div>
         </div>
         <div class="scrubber-row">
           <button class="play-pause-btn" data-grid="roundrobin" aria-label="Play / pause">
-            <svg class="icon-play" viewBox="0 0 16 16"><path d="M3.5 2.5 L13 8 L3.5 13.5 Z"/></svg>
-            <svg class="icon-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="0.5"/><rect x="9.5" y="2.5" width="3" height="11" rx="0.5"/></svg>
+            <svg class="icon-play" viewBox="0 0 16 16">
+              <path d="M3.5 2.5 L13 8 L3.5 13.5 Z" />
+            </svg>
+            <svg class="icon-pause" viewBox="0 0 16 16">
+              <rect x="3.5" y="2.5" width="3" height="11" rx="0.5" />
+              <rect x="9.5" y="2.5" width="3" height="11" rx="0.5" />
+            </svg>
           </button>
-          <input type="range" class="scrubber" data-grid="roundrobin" min="0" max="60" step="0.05" value="0" aria-label="Timeline">
+          <input type="range" class="scrubber" data-grid="roundrobin" min="0" max="60" step="0.05" value="0"
+            aria-label="Timeline">
           <span class="time-display" data-grid="roundrobin">0:00 / 1:00</span>
         </div>
         <p class="grid-caption">
-          Round Robin treats every robot identically. The <span class="dynamic-inline">dynamic robot</span> waits its turn and starves between visits, dragging system throughput down.
+          Round Robin treats every robot identically. The <span class="dynamic-inline">dynamic robot</span> waits its
+          turn and starves between visits, dragging system throughput down.
         </p>
       </div>
 
@@ -145,27 +194,44 @@
           <span class="comparison-grid-sub">ours</span>
         </div>
         <div class="robot-grid" data-grid="lookahead">
-          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/1.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#1</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/2.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#2</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/3.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#3</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/4.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#4</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/5.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#5</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/6.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#6</span></div>
-          <div class="robot-tile dynamic"><video class="robot-video" src="./vids/lookahead/7_dynamic.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#7 &middot; dynamic</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/8.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#8</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/9.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#9</span></div>
-          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/10.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#10</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/1.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#1</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/2.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#2</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/3.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#3</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/4.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#4</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/5.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#5</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/6.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#6</span></div>
+          <div class="robot-tile dynamic"><video class="robot-video" src="./vids/lookahead/7_dynamic.mp4" muted
+              playsinline loop preload="auto"></video><span class="robot-tag">#7 &middot; dynamic</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/8.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#8</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/9.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#9</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/10.mp4" muted playsinline loop
+              preload="auto"></video><span class="robot-tag">#10</span></div>
         </div>
         <div class="scrubber-row">
           <button class="play-pause-btn" data-grid="lookahead" aria-label="Play / pause">
-            <svg class="icon-play" viewBox="0 0 16 16"><path d="M3.5 2.5 L13 8 L3.5 13.5 Z"/></svg>
-            <svg class="icon-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="0.5"/><rect x="9.5" y="2.5" width="3" height="11" rx="0.5"/></svg>
+            <svg class="icon-play" viewBox="0 0 16 16">
+              <path d="M3.5 2.5 L13 8 L3.5 13.5 Z" />
+            </svg>
+            <svg class="icon-pause" viewBox="0 0 16 16">
+              <rect x="3.5" y="2.5" width="3" height="11" rx="0.5" />
+              <rect x="9.5" y="2.5" width="3" height="11" rx="0.5" />
+            </svg>
           </button>
-          <input type="range" class="scrubber" data-grid="lookahead" min="0" max="60" step="0.05" value="0" aria-label="Timeline">
+          <input type="range" class="scrubber" data-grid="lookahead" min="0" max="60" step="0.05" value="0"
+            aria-label="Timeline">
           <span class="time-display" data-grid="lookahead">0:00 / 1:00</span>
         </div>
         <p class="grid-caption grid-caption-ours">
-          Lookahead serves the <span class="dynamic-inline">dynamic robot</span> on time <i>and</i> keeps the static fleet productive: no robot stalls and overall system throughput rises.
+          Lookahead serves the <span class="dynamic-inline">dynamic robot</span> on time <i>and</i> keeps the static
+          fleet productive: no robot stalls and overall system throughput rises.
         </p>
       </div>
 
@@ -243,7 +309,8 @@
         </p>
       </div>
       <div class="scheduler-card scheduler-card-ours">
-        <div class="scheduler-card-name">Lookahead <span class="scheduler-card-tag scheduler-card-tag-ours">ours</span></div>
+        <div class="scheduler-card-name">Lookahead <span class="scheduler-card-tag scheduler-card-tag-ours">ours</span>
+        </div>
         <p>
           At each epoch, Lookahead enumerates all candidate schedules of $L$ epochs,
           $\,S = (s_0,B_0),\dots,(s_{L-1},B_{L-1})$, rolls each one forward through the
@@ -294,7 +361,7 @@
 
     <p class="section">
       We evaluate Armory in both simulation (LIBERO-10) and on a fleet of <b>10 AgileX PiPER
-      arms</b> served by a finetuned $\pi_{0.5}$ checkpoint from a single L40S GPU. We vary
+        arms</b> served by a finetuned $\pi_{0.5}$ checkpoint from a single L40S GPU. We vary
       heterogeneity across three settings: <i>all-fast</i> (homogeneous), <i>one-fast</i>
       (one dynamic + nine static), and <i>half-fast</i> (5 + 5).
     </p>
@@ -333,7 +400,7 @@
     </figure>
     <p class="figure-caption">
       <b>Real-world throughput.</b> In <i>one-fast</i>, <b>LA@5 nearly doubles fast-tier
-      throughput over EDF</b> and slightly boosts the slow tier as well, raising overall
+        throughput over EDF</b> and slightly boosts the slow tier as well, raising overall
       system throughput by $\sim$18%. In <i>half-fast</i>, the same weighting shifts
       throughput sharply toward the fast tier, an operator-tunable knob, not an
       improvement-everywhere claim. The homogeneous <i>all-fast</i> setting shows all
@@ -400,72 +467,73 @@
 
   <div class="footer">
     <!-- © UC Berkeley | Powered by vision, motion, and a little ambition. -->
-     Website adapted from <a href="https://github.com/videomimic-1/videomimic-1.github.io" target="_blank">VideoMimic</a>.
+    Website adapted from <a href="https://github.com/videomimic-1/videomimic-1.github.io"
+      target="_blank">VideoMimic</a>.
   </div>
 
   <!-- Teaser Video Autoplay with Delay and Loop -->
   <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const video = document.getElementById('teaser-video');
-    // const initialDelay = 1000; // No longer needed, autoplay attribute handles initial play
-    const loopDelay = 3000;    // 3 seconds delay before looping
+    document.addEventListener('DOMContentLoaded', function () {
+      const video = document.getElementById('teaser-video');
+      // const initialDelay = 1000; // No longer needed, autoplay attribute handles initial play
+      const loopDelay = 3000;    // 3 seconds delay before looping
 
-    // let initialPlayTimeout; // No longer needed
-    let loopTimeout;
+      // let initialPlayTimeout; // No longer needed
+      let loopTimeout;
 
-    if (video) {
-      // Ensure video is muted (already in HTML, but good practice)
-      video.muted = true;
-      // Controls are already in HTML, ensuring user can play if autoplay fails
+      if (video) {
+        // Ensure video is muted (already in HTML, but good practice)
+        video.muted = true;
+        // Controls are already in HTML, ensuring user can play if autoplay fails
 
-      // REMOVE JavaScript-based initial play:
-      /*
-      initialPlayTimeout = setTimeout(function() {
-        video.play().then(function() {
-          // Autoplay started
-        }).catch(function(error) {
-          console.log('Initial autoplay prevented for teaser video. User interaction might be needed.', error);
-          video.controls = true; // Ensure controls are visible
-        });
-      }, initialDelay);
-      */
-
-      // Loop with delay - this part can stay
-      video.addEventListener('ended', function() {
-        clearTimeout(loopTimeout); 
-        loopTimeout = setTimeout(function() {
-          video.currentTime = 0; 
-          video.play().catch(function(error) {
-            console.log('Delayed loop play prevented for teaser video:', error);
+        // REMOVE JavaScript-based initial play:
+        /*
+        initialPlayTimeout = setTimeout(function() {
+          video.play().then(function() {
+            // Autoplay started
+          }).catch(function(error) {
+            console.log('Initial autoplay prevented for teaser video. User interaction might be needed.', error);
+            video.controls = true; // Ensure controls are visible
           });
-        }, loopDelay);
-      });
+        }, initialDelay);
+        */
 
-      // --- Clear Timeouts on Manual Pause ---
-      video.addEventListener('pause', function() {
-        if (!video.ended && video.currentTime > 0) {
-           // clearTimeout(initialPlayTimeout); // No longer needed
-           clearTimeout(loopTimeout);
-           console.log('Teaser video: Manual pause detected, clearing loop timeout.');
-        }
-      });
+        // Loop with delay - this part can stay
+        video.addEventListener('ended', function () {
+          clearTimeout(loopTimeout);
+          loopTimeout = setTimeout(function () {
+            video.currentTime = 0;
+            video.play().catch(function (error) {
+              console.log('Delayed loop play prevented for teaser video:', error);
+            });
+          }, loopDelay);
+        });
 
-      // --- Clear Timeouts on Manual Play (if paused before initial delay finishes) ---
-       video.addEventListener('play', function() {
-           // if (initialPlayTimeout) { // No longer needed
-           //     clearTimeout(initialPlayTimeout);
-           // }
-       });
+        // --- Clear Timeouts on Manual Pause ---
+        video.addEventListener('pause', function () {
+          if (!video.ended && video.currentTime > 0) {
+            // clearTimeout(initialPlayTimeout); // No longer needed
+            clearTimeout(loopTimeout);
+            console.log('Teaser video: Manual pause detected, clearing loop timeout.');
+          }
+        });
 
-    } else {
-      console.error('Video element with ID "teaser-video" not found.');
-    }
-  });
+        // --- Clear Timeouts on Manual Play (if paused before initial delay finishes) ---
+        video.addEventListener('play', function () {
+          // if (initialPlayTimeout) { // No longer needed
+          //     clearTimeout(initialPlayTimeout);
+          // }
+        });
+
+      } else {
+        console.error('Video element with ID "teaser-video" not found.');
+      }
+    });
   </script>
 
   <!-- JavaScript for Real-World Comparison Grids: synchronized playback + scrubbing -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const grids = ['maxbatch', 'roundrobin', 'lookahead'].map(name => {
         const gridEl = document.querySelector(`.robot-grid[data-grid="${name}"]`);
         return {
@@ -528,7 +596,7 @@
         allVideos.forEach(v => {
           if (v === leader) return;
           if (Math.abs(v.currentTime - t) > 0.08) {
-            try { v.currentTime = t; } catch (e) {}
+            try { v.currentTime = t; } catch (e) { }
           }
         });
       }, 400);
@@ -542,14 +610,14 @@
         });
         g.scrubber.addEventListener('input', (e) => {
           const t = parseFloat(e.target.value);
-          allVideos.forEach(v => { try { v.currentTime = t; } catch (err) {} });
+          allVideos.forEach(v => { try { v.currentTime = t; } catch (err) { } });
           // mirror to the other scrubber
           grids.forEach(g2 => { if (g2 !== g) g2.scrubber.value = t; });
           updateUI();
         });
         const resumeIfNeeded = () => {
           if (wasPlaying) {
-            allVideos.forEach(v => v.play().catch(() => {}));
+            allVideos.forEach(v => v.play().catch(() => { }));
           }
           wasPlaying = false;
         };
@@ -558,7 +626,7 @@
 
         g.playBtn.addEventListener('click', () => {
           if (leader.paused) {
-            allVideos.forEach(v => v.play().catch(() => {}));
+            allVideos.forEach(v => v.play().catch(() => { }));
           } else {
             allVideos.forEach(v => v.pause());
           }
@@ -569,4 +637,5 @@
   </script>
 
 </body>
+
 </html>
