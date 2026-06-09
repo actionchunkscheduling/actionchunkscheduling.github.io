@@ -239,6 +239,25 @@
 
     </div>
     <!-- End Real World Comparison Grids -->
+
+    <!-- Throughput race chart: cumulative lego completions vs time, synced to the scrubbers -->
+    <div class="throughput-race" id="throughput-race">
+      <div class="throughput-race-head">
+        <span class="throughput-race-title">Legos sorted over time</span>
+        <div class="throughput-race-legend">
+          <span style="--swatch:#1b1b1b">Earliest-Deadline-First</span>
+          <span style="--swatch:#777B7F">Round Robin</span>
+          <span style="--swatch:#38a2fe">Lookahead (ours)</span>
+        </div>
+      </div>
+      <svg id="race-svg" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet" role="img"
+        aria-label="Cumulative legos sorted over time for each scheduler"></svg>
+      <p class="throughput-race-caption">
+        Cumulative legos sorted across the whole 10-robot fleet. The playhead tracks the videos above &mdash; press play
+        or scrub any timeline to watch <span class="dynamic-inline">Lookahead</span> pull ahead.
+      </p>
+    </div>
+
     <!-- ============ METHOD ============ -->
     <div class="tagline" id="method">Method.</div>
 
@@ -637,6 +656,130 @@
           updateUI();
         });
       });
+    });
+  </script>
+
+  <!-- Lego-completion overlays: per-grid counters, per-robot badges, and the throughput race chart -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const LEGO_LABELS = {"vids/lookahead/1.mp4":[7.217,12.649,17.882,23.588,30.551,36.098,40.697,45.502,50.124,55.0,61.893,71.218,78.873,87.401],"vids/lookahead/2.mp4":[6.335,10.448,16.434,21.82,26.837,31.796,36.333,41.187,46.186,51.296,57.4,64.63,71.744,80.339],"vids/lookahead/3.mp4":[7.101,12.29,17.744,22.796,26.836,31.19,36.34,40.611,47.562,57.573,62.821,71.096,77.748,82.575,88.052],"vids/lookahead/4.mp4":[7.207,11.96,17.641,23.033,28.329,33.071,37.361,41.606,47.261,56.216,62.733,69.432,76.022,84.66],"vids/lookahead/5.mp4":[6.866,10.689,14.792,19.778,24.559,29.236,34.807,39.457,48.709,53.241,62.243,67.148,73.739,78.94,88.036],"vids/lookahead/6.mp4":[6.576,12.351,17.056,21.049,25.382,35.103,39.485,44.402,50.318,56.071,61.218,68.295,82.851,89.767],"vids/lookahead/7_dynamic.mp4":[5.701,13.895,18.373,21.62,24.935,31.171,38.876,41.374,60.034,67.385],"vids/lookahead/8.mp4":[5.846,9.162,13.196,17.261,21.071,24.463,28.893,32.659,35.83,38.84,44.769,50.902,63.437,67.173,73.928,78.392],"vids/lookahead/9.mp4":[7.672,13.666,18.927,24.023,29.098,34.33,38.301,44.495,50.528,61.585,68.234,80.257,85.086],"vids/lookahead/10.mp4":[7.485,12.468,17.378,29.266,33.868,38.854,46.068,50.454,56.286,61.877,67.553,72.509,81.04,88.183],"vids/maxbatch/1.mp4":[6.562,12.596,18.467,23.549,28.352,37.383,47.327,69.517,74.047,78.67,83.645,89.69],"vids/maxbatch/2.mp4":[8.194,13.187,18.748,24.316,28.657,33.594,38.882,44.16,48.693,54.048,60.875,65.958,71.989,77.927,86.712],"vids/maxbatch/3.mp4":[7.315,10.733,16.379,21.783,26.813,31.636,35.964,40.781,45.258,50.944,56.323,69.344,74.365],"vids/maxbatch/4.mp4":[7.298,12.989,18.434,23.865,28.766,33.622,37.968,42.889,47.79,52.738,57.375,63.553,68.037,75.822,83.807],"vids/maxbatch/5.mp4":[7.022,14.416,20.003,25.359,29.981,34.871,39.701,44.303,51.032,57.096,62.144,67.659,73.017,78.312,87.03],"vids/maxbatch/6.mp4":[6.616,10.254,15.179,20.253,25.855,31.516,36.14,40.498,45.288,51.256,56.296,62.389,68.938,76.947,82.576,87.561],"vids/maxbatch/7_dynamic.mp4":[8.524,32.656,74.319],"vids/maxbatch/8.mp4":[5.313,10.999,15.311,19.297,22.26,44.69,78.595,81.939,85.633,89.434],"vids/maxbatch/9.mp4":[6.119,12.989,17.582,22.222,28.761,32.557,36.916,41.867,46.298,50.646,58.243,67.574,74.576,82.252,88.66],"vids/maxbatch/10.mp4":[7.425,13.085,21.694,37.217,42.77,53.543,60.566,70.941,76.872,83.321,88.901],"vids/roundrobin/1.mp4":[6.924,12.515,24.474,28.907,33.075,38.188,43.219,50.232,56.197,59.628,65.314,72.086,87.907],"vids/roundrobin/2.mp4":[7.151,12.884,18.314,22.721,27.742,32.737,37.148,41.543,47.26,52.279,58.012,63.013,69.362,76.579,84.705],"vids/roundrobin/3.mp4":[6.649,11.787,17.356,22.586,27.645,32.335,36.821,41.114,50.22,55.211,60.681,65.842,72.799,89.233],"vids/roundrobin/4.mp4":[7.009,11.536,16.093,21.718,27.889,32.616,37.846,43.447,48.565,52.712],"vids/roundrobin/5.mp4":[6.637,12.086,15.918,20.453,25.519,30.229,35.12,40.101,45.429,50.917,55.85,67.172,72.067,77.45,83.223,89.358],"vids/roundrobin/6.mp4":[6.96,16.021,21.528,26.767,35.195,41.152,51.032,58.082,66.281,70.882,78.526,83.813],"vids/roundrobin/7_dynamic.mp4":[75.88],"vids/roundrobin/8.mp4":[5.215,8.323,11.966,16.153,19.352,22.946,32.361,36.643,40.207,43.787,50.446,54.064,57.84,61.467,67.035,73.478],"vids/roundrobin/9.mp4":[6.256,11.632,19.786,24.433,28.564,33.394,37.999,42.354,52.125,57.802,63.254,68.257,79.483,84.924],"vids/roundrobin/10.mp4":[7.48,14.547,19.023,27.843,34.928,42.835,58.647,65.213,69.88,76.844,88.39]};
+
+      const SVGNS = 'http://www.w3.org/2000/svg';
+      const SCHED = [
+        { grid: 'maxbatch', color: '#1b1b1b' },
+        { grid: 'roundrobin', color: '#777B7F' },
+        { grid: 'lookahead', color: '#38a2fe', ours: true },
+      ];
+
+      // Number of completion times <= t (arrays are pre-sorted ascending).
+      function countUpTo(arr, t) {
+        let lo = 0, hi = arr.length;
+        while (lo < hi) {
+          const mid = (lo + hi) >> 1;
+          if (arr[mid] <= t) lo = mid + 1; else hi = mid;
+        }
+        return lo;
+      }
+
+      // Build per-grid state: tiles (with their label arrays + badge els) and a header counter.
+      const groups = SCHED.map(s => {
+        const gridEl = document.querySelector(`.robot-grid[data-grid="${s.grid}"]`);
+        const tiles = Array.from(gridEl.querySelectorAll('.robot-tile')).map(tile => {
+          const video = tile.querySelector('video.robot-video');
+          const key = (video.getAttribute('src') || '').replace(/^\.\//, '');
+          const times = LEGO_LABELS[key] || [];
+          const badge = document.createElement('span');
+          badge.className = 'robot-count';
+          badge.textContent = '0';
+          tile.appendChild(badge);
+          return { times, badge, prev: 0 };
+        });
+
+        // Flat sorted list of all completion events for the race-chart line.
+        const allTimes = tiles.flatMap(t => t.times).sort((a, b) => a - b);
+        return { ...s, tiles, allTimes };
+      });
+
+      // ---- Race chart geometry ----
+      const svg = document.getElementById('race-svg');
+      const VB_W = 800, VB_H = 300;
+      const padL = 44, padR = 14, padT = 12, padB = 28;
+      const plotW = VB_W - padL - padR, plotH = VB_H - padT - padB;
+      const xMax = 90;
+      const yMaxRaw = Math.max(...groups.map(g => g.allTimes.length));
+      const yMax = Math.ceil(yMaxRaw / 20) * 20; // round up to nearest 20
+      const sx = t => padL + Math.min(t, xMax) / xMax * plotW;
+      const sy = c => padT + (1 - c / yMax) * plotH;
+
+      function el(name, attrs) {
+        const n = document.createElementNS(SVGNS, name);
+        for (const k in attrs) n.setAttribute(k, attrs[k]);
+        return n;
+      }
+
+      // Gridlines + axis labels.
+      for (let y = 0; y <= yMax; y += 20) {
+        svg.appendChild(el('line', { x1: padL, y1: sy(y), x2: padL + plotW, y2: sy(y), stroke: '#eee', 'stroke-width': 1 }));
+        const lbl = el('text', { x: padL - 8, y: sy(y) + 4, 'text-anchor': 'end', fill: '#999', 'font-family': 'Roboto Mono, monospace', 'font-size': 11 });
+        lbl.textContent = y;
+        svg.appendChild(lbl);
+      }
+      for (let x = 0; x <= xMax; x += 15) {
+        const lbl = el('text', { x: sx(x), y: VB_H - 8, 'text-anchor': 'middle', fill: '#999', 'font-family': 'Roboto Mono, monospace', 'font-size': 11 });
+        lbl.textContent = x + 's';
+        svg.appendChild(lbl);
+      }
+
+      // Cumulative step polyline per scheduler.
+      groups.forEach(g => {
+        let pts = `${sx(0)},${sy(0)}`;
+        g.allTimes.forEach((t, i) => { pts += ` ${sx(t)},${sy(i)} ${sx(t)},${sy(i + 1)}`; });
+        pts += ` ${sx(xMax)},${sy(g.allTimes.length)}`;
+        svg.appendChild(el('polyline', {
+          points: pts, fill: 'none', stroke: g.color,
+          'stroke-width': g.ours ? 3 : 2, 'stroke-linejoin': 'round',
+          opacity: g.ours ? 1 : 0.85,
+        }));
+      });
+
+      // Playhead: vertical line + a dot riding each scheduler's line.
+      const playLine = el('line', { x1: sx(0), y1: padT, x2: sx(0), y2: padT + plotH, stroke: '#000', 'stroke-width': 1, 'stroke-dasharray': '4 3', opacity: 0.45 });
+      svg.appendChild(playLine);
+      groups.forEach(g => {
+        g.dot = el('circle', { cx: sx(0), cy: sy(0), r: g.ours ? 5 : 4, fill: g.color });
+        svg.appendChild(g.dot);
+      });
+
+      // ---- Sync to playback ----
+      const leader = document.querySelector('.robot-grid[data-grid="maxbatch"] video.robot-video');
+
+      function update(t, animate) {
+        groups.forEach(g => {
+          let total = 0;
+          g.tiles.forEach(tile => {
+            const c = countUpTo(tile.times, t);
+            if (c !== tile.prev) {
+              tile.badge.textContent = c;
+              if (animate && c > tile.prev) {
+                tile.badge.classList.add('pop');
+                setTimeout(() => tile.badge.classList.remove('pop'), 180);
+              }
+              tile.prev = c;
+            }
+            total += c;
+          });
+          g.dot.setAttribute('cx', sx(t));
+          g.dot.setAttribute('cy', sy(total));
+        });
+        playLine.setAttribute('x1', sx(t));
+        playLine.setAttribute('x2', sx(t));
+      }
+
+      leader.addEventListener('timeupdate', () => update(leader.currentTime, true));
+      document.querySelectorAll('.scrubber').forEach(sc => {
+        sc.addEventListener('input', e => update(parseFloat(e.target.value) || 0, false));
+      });
+      update(0, false);
     });
   </script>
 
