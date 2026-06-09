@@ -1,421 +1,572 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="Action Chunk Scheduling for Robot Policy Serving">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
-
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>Action Chunk Scheduling for Robot Policy Serving</title>
-  
-  <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  
-  <!-- Critical CSS - Load synchronously -->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
-    ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
-  }
-  </script>
+  <meta charset="UTF-8">
+  <title>Action Chunk Scheduling for Batched Robot Policy Serving</title>
+  <link rel="icon" href="./figs/logo.png" type="image/png">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <link rel="stylesheet" href="style.css">
+  <!-- KaTeX for math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}], throwOnError:false});"></script>
 </head>
 <body>
+  <div class="toc">
+    <h3>Content</h3>
+    <hr>
+    <ul>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#deploy-in-real">Real-world Demo</a></li>
+      <li><a href="#method">Method</a></li>
+      <li class="toc-subsection"><a href="#formulation">Formulation</a></li>
+      <li class="toc-subsection"><a href="#scheduling">Scheduling</a></li>
+      <li class="toc-subsection"><a href="#metrics">Metrics</a></li>
+      <li><a href="#evaluations">Evaluations</a></li>
+      <li><a href="#takeaways">Takeaways</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="hero-text">Armory</div>
+    <div class="sub-hero-text">Action Chunk Scheduling for Batched Robot Policy Serving</div>
+
+    <!-- Add Authors -->
+    <div class="authors">
+      Anonymous Authors
+      <span class="affiliation">Under Review @ Corl 2026</span>
+      <!-- <span class="affiliation" style="color: #555; text-align: center; font-size: 20px; margin-top: 6px;">CoRL 2025, Best Student Paper Award</span> -->
+    </div>
+    <!-- End Authors -->
+
+    <!-- use the video ./figs/videomimic_teaser.mp4 -->
+    <video id="teaser-video" src="./vids/supplementary_video.mp4" width="100%" height="100%" controls muted playsinline autoplay></video>
+    <!-- Caption for Figure 1 (Teaser Video) -->
+    <p class="figure-caption">
+        <span style="font-variant: small-caps;">Armory</span> is an end-to-end serving system for deploying robot policies from the cloud that tracks robot states and schedules action chunks to minimize robot starvation. Naive scheduling underserves fast robots completing highly dynamic tasks, so we also propose <span style="font-variant: small-caps;">Lookahead</span> scheduling to be able to perform a trade off for fast robot service.
+    </p>
+
+    <!-- Add Quick Links Here -->
+    <!-- <div class="quick-links">
+      <a href="./VideoMimic.pdf" target="_blank">[pdf]</a>
+      <a href="https://arxiv.org/abs/2505.03729" target="_blank">[arxiv]</a>
+      <a href="https://github.com/hongsukchoi/VideoMimic">[code]</a> 
+    </div> -->
+    
+    <div class="tagline" id="abstract">Abstract.</div>
 
 
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
+    <div class="section">
 
-  <main id="main-content">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Action Chunk Scheduling for Robot Policy Serving</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
-              <span class="author-block">
-                <a href="">Anonymous Authors</a><sup></sup></span>
-               
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <!-- <span class="author-block">Conference on Robot Learning (CoRL) 2026</span> -->
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
-                  </div>
+    Deploying robot foundation models at scale is the next step towards realizing the potential of general-purpose robots. However, Vision-Language-Action (VLA) and other foundation models are computationally demanding, and on-device compute is constrained by power and space. In this paper, we introduce the problem of serving a robot policy to multiple robots from a remote GPU and formulate it as a scheduling problem. We build <b>Armory</b>, a serving system validated on fleets of both simulated and real robots. Our experiments show that naive scheduling heuristics perform well when all robots are the same, but fall short when robots consume action chunks at different rates, uncovering a mismatch between conventional batching methods and the closed-loop requirements of robot policy execution. To address this, we propose a scheduling algorithm that accounts for this heterogeneity and improves overall system throughput by up to 18% in real-world experiments. 
+    
+    </div> 
 
-            </div>
-          </div>
+    <div class="tagline" id="deploy-in-real">Real World Demo.</div>
+
+    <p class="figure-caption" style="text-align: left; margin-top: -10px; margin-bottom: 30px; padding: 0;">
+      We deploy a fleet of 10 AgileX PiPER arms simultaneously served by a finetuned &pi;<sub>0.5</sub> checkpoint
+      from a single cloud L40S GPU, with each robot streaming observations to the server and receiving action
+      chunks back asynchronously. We display the <b>One-Fast</b> configuration, where one fast robot
+      (<span class="dynamic-inline">highlighted</span>) runs a dynamic turntable-sorting task with a shorter
+      execution horizon; the other nine slow robots run a static brick-into-bin sorting task. Below, the
+      same 10-robot workload is served by our two baselines, <b>Earliest-Deadline-First (EDF)</b> and
+      <b>Round Robin</b>, compared against our <b>Lookahead</b> scheduler. Scrub the timeline to see the
+      system progress across time.
+    </p>
+
+    <!-- Real World Comparison Grids -->
+    <div class="comparison-section">
+
+      <div class="comparison-grid-block">
+        <div class="comparison-grid-header">
+          <span class="comparison-grid-title">Earliest-Deadline-First</span>
+          <span class="comparison-grid-sub">baseline</span>
         </div>
+        <div class="robot-grid" data-grid="maxbatch">
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/1.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#1</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/2.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#2</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/3.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#3</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/4.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#4</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/5.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#5</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/6.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#6</span></div>
+          <div class="robot-tile dynamic"><video class="robot-video" src="./vids/maxbatch/7_dynamic.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#7 &middot; dynamic</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/8.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#8</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/9.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#9</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/maxbatch/10.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#10</span></div>
+        </div>
+        <div class="scrubber-row">
+          <button class="play-pause-btn" data-grid="maxbatch" aria-label="Play / pause">
+            <svg class="icon-play" viewBox="0 0 16 16"><path d="M3.5 2.5 L13 8 L3.5 13.5 Z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="0.5"/><rect x="9.5" y="2.5" width="3" height="11" rx="0.5"/></svg>
+          </button>
+          <input type="range" class="scrubber" data-grid="maxbatch" min="0" max="60" step="0.05" value="0" aria-label="Timeline">
+          <span class="time-display" data-grid="maxbatch">0:00 / 1:00</span>
+        </div>
+        <p class="grid-caption">
+          EDF starves the <span class="dynamic-inline">dynamic robot</span>: it has no urgent deadline most of the time, so it is repeatedly deprioritized and stalls.
+        </p>
+      </div>
+
+      <div class="comparison-grid-block">
+        <div class="comparison-grid-header">
+          <span class="comparison-grid-title">Round Robin</span>
+          <span class="comparison-grid-sub">baseline</span>
+        </div>
+        <div class="robot-grid" data-grid="roundrobin">
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/1.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#1</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/2.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#2</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/3.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#3</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/4.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#4</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/5.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#5</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/6.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#6</span></div>
+          <div class="robot-tile dynamic"><video class="robot-video" src="./vids/roundrobin/7_dynamic.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#7 &middot; dynamic</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/8.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#8</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/9.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#9</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/roundrobin/10.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#10</span></div>
+        </div>
+        <div class="scrubber-row">
+          <button class="play-pause-btn" data-grid="roundrobin" aria-label="Play / pause">
+            <svg class="icon-play" viewBox="0 0 16 16"><path d="M3.5 2.5 L13 8 L3.5 13.5 Z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="0.5"/><rect x="9.5" y="2.5" width="3" height="11" rx="0.5"/></svg>
+          </button>
+          <input type="range" class="scrubber" data-grid="roundrobin" min="0" max="60" step="0.05" value="0" aria-label="Timeline">
+          <span class="time-display" data-grid="roundrobin">0:00 / 1:00</span>
+        </div>
+        <p class="grid-caption">
+          Round Robin treats every robot identically. The <span class="dynamic-inline">dynamic robot</span> waits its turn and starves between visits, dragging system throughput down.
+        </p>
+      </div>
+
+      <div class="comparison-grid-block">
+        <div class="comparison-grid-header">
+          <span class="comparison-grid-title-ours">Lookahead</span>
+          <span class="comparison-grid-sub">ours</span>
+        </div>
+        <div class="robot-grid" data-grid="lookahead">
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/1.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#1</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/2.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#2</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/3.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#3</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/4.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#4</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/5.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#5</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/6.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#6</span></div>
+          <div class="robot-tile dynamic"><video class="robot-video" src="./vids/lookahead/7_dynamic.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#7 &middot; dynamic</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/8.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#8</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/9.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#9</span></div>
+          <div class="robot-tile"><video class="robot-video" src="./vids/lookahead/10.mp4" muted playsinline loop preload="auto"></video><span class="robot-tag">#10</span></div>
+        </div>
+        <div class="scrubber-row">
+          <button class="play-pause-btn" data-grid="lookahead" aria-label="Play / pause">
+            <svg class="icon-play" viewBox="0 0 16 16"><path d="M3.5 2.5 L13 8 L3.5 13.5 Z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="0.5"/><rect x="9.5" y="2.5" width="3" height="11" rx="0.5"/></svg>
+          </button>
+          <input type="range" class="scrubber" data-grid="lookahead" min="0" max="60" step="0.05" value="0" aria-label="Timeline">
+          <span class="time-display" data-grid="lookahead">0:00 / 1:00</span>
+        </div>
+        <p class="grid-caption grid-caption-ours">
+          Lookahead serves the <span class="dynamic-inline">dynamic robot</span> on time <i>and</i> keeps the static fleet productive: no robot stalls and overall system throughput rises.
+        </p>
+      </div>
+
+    </div>
+    <!-- End Real World Comparison Grids -->
+    <!-- ============ METHOD ============ -->
+    <div class="tagline" id="method">Method.</div>
+
+    <p class="section">
+      Armory treats batched policy serving as a <b>control-aware scheduling problem</b>.
+      Action chunk execution depends on when chunks are generated by the server and when they
+      are received by the robot, so the scheduler reasons in <i>robot time</i> rather
+      than request time. Armory maintains a server-side mirror of every robot's action queue,
+      in-flight chunks, execution horizon, and communication delay, and uses it to predict
+      the downstream effect of each candidate batch on the fleet.
+    </p>
+
+    <figure class="method-figure">
+      <img src="./figs/action_chunks.png" alt="Action chunk execution timeline">
+    </figure>
+    <p class="figure-caption">
+      <b>Execution timeline.</b> A robot with $H_{\text{max}}=8$ consumes actions by
+      incrementing the action index, pausing whenever it is starved. If starvation occurs
+      while a chunk is still in flight, the chunk's execution extends past $H_{\text{max}}$
+      steps after the observation was sent.
+    </p>
+
+    <div class="section-subtitle" id="formulation">1. Formulation.</div>
+
+    <p class="section">
+      We model serving as an MDP over $N$ robots and scheduling epochs $k$. At each epoch the
+      server observes state $s_k$ and picks a non-empty batch $B_k \subseteq \{1,\dots,N\}$ to
+      serve. For each robot $j$, Armory tracks the latest executed action index $i_j$, the
+      latest index $\hat{i}_j$ received from the robot, and a queue
+      $\mathcal{Q}_j$ of generated chunks $c = (i_{\text{start}}, h_j, t_{\text{arr}})$.
+      Inference on batch $B_k$ finishes at $t_{k+1} = t_k + \tilde{d}_{\text{infer}}(|B_k|)$,
+      enqueueing one chunk per served robot; meanwhile every robot ticks at $f_c$, advancing
+      $i_j$ iff some chunk has already arrived and still covers the current index.
+    </p>
+    <div class="eqn-block">
+      $$
+      R(s_k, B_k) \;=\; \frac{1}{f_c}\sum_{j=1}^{N} w_j\, \Delta i_j(s_k, B_k),
+      \qquad
+      \pi^{\star} \;=\; \arg\max_{\pi}\; \sum_{k}\mathbb{E}\!\left[R(s_k, B_k)\right].
+      $$
+    </div>
+    <p class="section">
+      $\Delta i_j$ is robot $j$'s non-starved control steps during the transition. Weights
+      $w_j$ are an optional knob: $w_j=1$ treats every robot equally, while $w_j > 1$
+      prioritizes robots whose tasks demand fresher actions.
+    </p>
+
+    <div class="section-subtitle" id="scheduling">2. Scheduling.</div>
+
+    <p class="section">
+      Exact planning in this MDP is intractable: future batch choices create a branching tree
+      over robot execution states, and networking latencies are stochastic. We compare three
+      tractable scheduling policies.
+    </p>
+
+    <div class="scheduler-cards">
+      <div class="scheduler-card">
+        <div class="scheduler-card-name">Round Robin <span class="scheduler-card-tag">baseline</span></div>
+        <p>
+          Cycles through robots in batches of maximum size $b$. Fair across robots but
+          ignores urgency: a fast robot can starve while the scheduler waits its turn.
+        </p>
+      </div>
+      <div class="scheduler-card">
+        <div class="scheduler-card-name">Earliest-Deadline-First <span class="scheduler-card-tag">baseline</span></div>
+        <p>
+          Schedules the $b$ robots predicted to run out of executable actions soonest.
+          Captures imminent starvation, but treats every starvation event as equally costly
+          and does not model how the chosen batch reshapes the next state.
+        </p>
+      </div>
+      <div class="scheduler-card scheduler-card-ours">
+        <div class="scheduler-card-name">Lookahead <span class="scheduler-card-tag scheduler-card-tag-ours">ours</span></div>
+        <p>
+          At each epoch, Lookahead enumerates all candidate schedules of $L$ epochs,
+          $\,S = (s_0,B_0),\dots,(s_{L-1},B_{L-1})$, rolls each one forward through the
+          server-side mirror, and dispatches the first batch of the schedule with the
+          highest score:
+        </p>
+        <div class="eqn-block tight">
+          $$
+          \text{Score}(S) \;=\; \sum_{\ell=0}^{L-1}
+          \frac{R(s_\ell, B_\ell)}{d_{\text{infer}}(|B_\ell|)}.
+          $$
+        </div>
+        <p>
+          Normalizing by inference time trades GPU efficiency, starvation avoidance, and
+          task-dependent reactivity against each other. We use a one-step instantiation
+          ($L = 1$) in our experiments. Operators can dial $w_j$ on selected robots
+          (denoted <b>LA@$w_j$</b>) to protect a fast tier without rewriting the policy.
+        </p>
       </div>
     </div>
-  </div>
-</section>
 
+    <div class="section-subtitle" id="metrics">3. Metrics.</div>
 
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
+    <p class="section">
+      We track two primary metrics throughout the evaluations.
+    </p>
+
+    <div class="scheduler-cards metric-cards">
+      <div class="scheduler-card">
+        <div class="scheduler-card-name">Starvation rate <span class="scheduler-card-tag">buffer health</span></div>
+        <p>
+          The fraction of control steps where a robot has no valid action to execute.
+          A direct measure of buffer health and a leading indicator of stalled motion.
+        </p>
+      </div>
+      <div class="scheduler-card">
+        <div class="scheduler-card-name">Throughput <span class="scheduler-card-tag">downstream</span></div>
+        <p>
+          Successes per unit time: task completions per minute in simulation,
+          and bricks sorted per 60-second window in the real world. Throughput captures
+          what starvation actually costs downstream, and is task-dependent (see next section).
+        </p>
+      </div>
     </div>
-  </div>
-</section>
-<!-- End teaser video -->
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
+    <!-- ============ EVALUATIONS ============ -->
+    <div class="tagline" id="evaluations">Evaluations.</div>
+
+    <p class="section">
+      We evaluate Armory in both simulation (LIBERO-10) and on a fleet of <b>10 AgileX PiPER
+      arms</b> served by a finetuned $\pi_{0.5}$ checkpoint from a single L40S GPU. We vary
+      heterogeneity across three settings: <i>all-fast</i> (homogeneous), <i>one-fast</i>
+      (one dynamic + nine static), and <i>half-fast</i> (5 + 5).
+    </p>
+
+    <div class="section-subtitle">Why heterogeneity matters.</div>
+    <p class="section">
+      We first verify the central premise: that <b>the cost of latency is task-dependent</b>.
+      We sweep the minimum execution horizon and the induced starvation rate on a single
+      robot running each task type.
+    </p>
+    <div class="fig-row">
+      <figure class="fig-half">
+        <img src="./figs/throughput_vs_horizon.png" alt="Throughput vs execution horizon">
+        <figcaption><b>(a) Execution horizon.</b> Throughput on the dynamic task drops
+          sharply as the minimum execution horizon grows; the static task is far more
+          tolerant.</figcaption>
+      </figure>
+      <figure class="fig-half">
+        <img src="./figs/throughput_vs_starvation.png" alt="Throughput vs starvation rate">
+        <figcaption><b>(b) Starvation rate.</b> Even modest starvation collapses throughput
+          on the dynamic task, while the static task degrades gracefully.</figcaption>
+      </figure>
+    </div>
+    <p class="figure-caption">
+      <b>Dynamic tasks are starvation-sensitive.</b> A scheduler that treats every robot
+      uniformly will underserve the robots whose tasks matter most.
+    </p>
+
+    <div class="section-subtitle">Real-world results: 10 PiPER arms.</div>
+    <p class="section">
+      We deploy each scheduler against the three heterogeneity scenarios and measure system
+      throughput in legos-per-minute, separated by fast and slow tier.
+    </p>
+    <figure class="result-figure">
+      <img src="./figs/throughput_combined_real.png" alt="Real-world throughput across schedulers">
+    </figure>
+    <p class="figure-caption">
+      <b>Real-world throughput.</b> In <i>one-fast</i>, <b>LA@5 nearly doubles fast-tier
+      throughput over EDF</b> and slightly boosts the slow tier as well, raising overall
+      system throughput by $\sim$18%. In <i>half-fast</i>, the same weighting shifts
+      throughput sharply toward the fast tier, an operator-tunable knob, not an
+      improvement-everywhere claim. The homogeneous <i>all-fast</i> setting shows all
+      schedulers performing comparably.
+    </p>
+
+    <div class="section-subtitle">Simulation: LIBERO-10.</div>
+    <p class="section">
+      Sweeping fleet size from 2 to 10 in simulation reproduces the real-world story: weighting
+      exposes a controllable throughput / starvation tradeoff between the fast and slow tiers.
+    </p>
+    <figure class="result-figure">
+      <img src="./figs/tier_breakdown_sim.png" alt="LIBERO-10 simulation tier breakdown">
+    </figure>
+    <p class="figure-caption">
+      <b>LIBERO-10 per-tier breakdown.</b> In <i>one-fast</i>, LA@5 holds fast-tier
+      throughput high and starvation low without sacrificing the slow tier. In
+      <i>half-fast</i>, LA@3 is the sweet spot: it improves fast-tier service while keeping
+      slow-tier performance close to fixed-priority baselines; LA@5 marks the boundary
+      where prioritizing fast robots begins to noticeably cost the slow tier.
+    </p>
+
+    <!-- ============ TAKEAWAYS ============ -->
+    <div class="tagline" id="takeaways">Takeaways.</div>
+    <div class="takeaway-list">
+      <div class="takeaway">
+        <div class="takeaway-num">1</div>
+        <div class="takeaway-body">
+          <div class="takeaway-title">Latency cost is task-dependent.</div>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            Dynamic manipulation degrades sharply with stale chunks and starvation, while
+            quasi-static manipulation is much more tolerant. Treating every robot uniformly
+            wastes service on robots that don't need it and starves the ones that do.
+          </p>
+        </div>
+      </div>
+      <div class="takeaway">
+        <div class="takeaway-num">2</div>
+        <div class="takeaway-body">
+          <div class="takeaway-title">Homogeneous fleets don't need a smart scheduler.</div>
+          <p>
+            When every robot has the same timing requirement, Round Robin and
+            Earliest-Deadline-First perform comparably to Lookahead. Complexity only pays off
+            when reactivity demands actually differ across robots.
+          </p>
+        </div>
+      </div>
+      <div class="takeaway">
+        <div class="takeaway-num">3</div>
+        <div class="takeaway-body">
+          <div class="takeaway-title">Heterogeneity rewards modeling the closed loop.</div>
+          <p>
+            By simulating each candidate batch's effect on action-buffer dynamics, Lookahead
+            selectively protects latency-sensitive robots and improves real-world system
+            throughput by up to <b>18%</b> over EDF, with a single weight knob that
+            lets operators trade fast-tier service against slow-tier service.
           </p>
         </div>
       </div>
     </div>
+
+  </div> <!-- End of main-content div -->
+
+
+  <div class="footer">
+    <!-- © UC Berkeley | Powered by vision, motion, and a little ambition. -->
+     Website adapted from <a href="https://github.com/videomimic-1/videomimic-1.github.io" target="_blank">VideoMimic</a>.
   </div>
-</section>
-<!-- End paper abstract -->
 
+  <!-- Teaser Video Autoplay with Delay and Loop -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('teaser-video');
+    // const initialDelay = 1000; // No longer needed, autoplay attribute handles initial play
+    const loopDelay = 3000;    // 3 seconds delay before looping
 
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
+    // let initialPlayTimeout; // No longer needed
+    let loopTimeout;
 
+    if (video) {
+      // Ensure video is muted (already in HTML, but good practice)
+      video.muted = true;
+      // Controls are already in HTML, ensuring user can play if autoplay fails
 
+      // REMOVE JavaScript-based initial play:
+      /*
+      initialPlayTimeout = setTimeout(function() {
+        video.play().then(function() {
+          // Autoplay started
+        }).catch(function(error) {
+          console.log('Initial autoplay prevented for teaser video. User interaction might be needed.', error);
+          video.controls = true; // Ensure controls are visible
+        });
+      }, initialDelay);
+      */
 
+      // Loop with delay - this part can stay
+      video.addEventListener('ended', function() {
+        clearTimeout(loopTimeout); 
+        loopTimeout = setTimeout(function() {
+          video.currentTime = 0; 
+          video.play().catch(function(error) {
+            console.log('Delayed loop play prevented for teaser video:', error);
+          });
+        }, loopDelay);
+      });
 
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- TODO: Replace with your YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End youtube video -->
+      // --- Clear Timeouts on Manual Pause ---
+      video.addEventListener('pause', function() {
+        if (!video.ended && video.currentTime > 0) {
+           // clearTimeout(initialPlayTimeout); // No longer needed
+           clearTimeout(loopTimeout);
+           console.log('Teaser video: Manual pause detected, clearing loop timeout.');
+        }
+      });
 
+      // --- Clear Timeouts on Manual Play (if paused before initial delay finishes) ---
+       video.addEventListener('play', function() {
+           // if (initialPlayTimeout) { // No longer needed
+           //     clearTimeout(initialPlayTimeout);
+           // }
+       });
 
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
+    } else {
+      console.error('Video element with ID "teaser-video" not found.');
+    }
+  });
+  </script>
 
+  <!-- JavaScript for Real-World Comparison Grids: synchronized playback + scrubbing -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const grids = ['maxbatch', 'roundrobin', 'lookahead'].map(name => {
+        const gridEl = document.querySelector(`.robot-grid[data-grid="${name}"]`);
+        return {
+          name,
+          videos: Array.from(gridEl.querySelectorAll('video.robot-video')),
+          scrubber: document.querySelector(`.scrubber[data-grid="${name}"]`),
+          playBtn: document.querySelector(`.play-pause-btn[data-grid="${name}"]`),
+          timeDisplay: document.querySelector(`.time-display[data-grid="${name}"]`),
+        };
+      });
 
+      const allVideos = grids.flatMap(g => g.videos);
+      const leader = grids[0].videos[0];
 
+      function formatTime(t) {
+        if (!isFinite(t)) t = 0;
+        const m = Math.floor(t / 60);
+        const s = Math.floor(t % 60);
+        return `${m}:${s.toString().padStart(2, '0')}`;
+      }
 
+      function updateUI() {
+        const t = leader.currentTime;
+        const d = leader.duration || 60;
+        grids.forEach(g => {
+          if (document.activeElement !== g.scrubber) g.scrubber.value = t;
+          g.timeDisplay.textContent = `${formatTime(t)} / ${formatTime(d)}`;
+          g.playBtn.classList.toggle('is-playing', !leader.paused);
+        });
+      }
 
+      function setScrubberMax() {
+        const d = leader.duration;
+        if (isFinite(d) && d > 0) {
+          grids.forEach(g => { g.scrubber.max = d; });
+        }
+      }
 
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
+      // Wait for all videos to be ready, then sync to t=0 (paused; user starts playback).
+      Promise.all(allVideos.map(v => new Promise(res => {
+        if (v.readyState >= 2) return res();
+        v.addEventListener('loadeddata', res, { once: true });
+        v.addEventListener('error', res, { once: true });
+      }))).then(() => {
+        setScrubberMax();
+        allVideos.forEach(v => { v.currentTime = 0; });
+        updateUI();
+      });
 
-      <!-- TODO: Replace with your poster PDF -->
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
+      // Drive UI from leader.
+      leader.addEventListener('timeupdate', updateUI);
+      leader.addEventListener('durationchange', setScrubberMax);
+      leader.addEventListener('play', updateUI);
+      leader.addEventListener('pause', updateUI);
 
+      // Periodic drift correction: keep all videos within ~80ms of leader.
+      setInterval(() => {
+        if (leader.paused) return;
+        const t = leader.currentTime;
+        allVideos.forEach(v => {
+          if (v === leader) return;
+          if (Math.abs(v.currentTime - t) > 0.08) {
+            try { v.currentTime = t; } catch (e) {}
+          }
+        });
+      }, 400);
 
+      // Scrubbers: scrubbing either one seeks every video.
+      grids.forEach(g => {
+        let wasPlaying = false;
+        g.scrubber.addEventListener('pointerdown', () => {
+          wasPlaying = !leader.paused;
+          if (wasPlaying) allVideos.forEach(v => v.pause());
+        });
+        g.scrubber.addEventListener('input', (e) => {
+          const t = parseFloat(e.target.value);
+          allVideos.forEach(v => { try { v.currentTime = t; } catch (err) {} });
+          // mirror to the other scrubber
+          grids.forEach(g2 => { if (g2 !== g) g2.scrubber.value = t; });
+          updateUI();
+        });
+        const resumeIfNeeded = () => {
+          if (wasPlaying) {
+            allVideos.forEach(v => v.play().catch(() => {}));
+          }
+          wasPlaying = false;
+        };
+        g.scrubber.addEventListener('pointerup', resumeIfNeeded);
+        g.scrubber.addEventListener('pointercancel', resumeIfNeeded);
 
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
-}</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
+        g.playBtn.addEventListener('click', () => {
+          if (leader.paused) {
+            allVideos.forEach(v => v.play().catch(() => {}));
+          } else {
+            allVideos.forEach(v => v.pause());
+          }
+          updateUI();
+        });
+      });
+    });
+  </script>
 
-
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+</body>
+</html>

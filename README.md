@@ -1,1 +1,3 @@
-# Action Chunk Scheduling for Robot Policy Serving
+# videomimic-1.github.io
+
+This repository contains the source code for the VideoMimic website: https://videomimic.net/.
